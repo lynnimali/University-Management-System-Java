@@ -1,30 +1,51 @@
+import java.util.Scanner;
+
 public class UniversityMain {
 
     public static void main(String[] args) {
 
-        // Creating objects
-        Student student = new Student("Lynn", 101, "Computer Science", 50000);
-        Lecturer lecturer = new Lecturer("Dr. Smith", 201, 120000, "IT");
-        Administrator admin = new Administrator("Mr. John", 301, 90000, "Main Block");
+        Scanner input = new Scanner(System.in);
 
-        // Demonstrating inheritance and method overriding
-        student.displayRole();
-        lecturer.displayRole();
-        admin.displayRole();
+        try {
 
-        System.out.println();
+            System.out.println(" University Management System ");
 
-        // Calling interface methods
-        student.registerCourse("Software Engineering");
-        System.out.println("Student Fee: " + student.calculatePayment());
+            System.out.print("Enter student name: ");
+            String name = input.nextLine();
 
-        System.out.println();
+            System.out.print("Enter student ID: ");
+            int id = input.nextInt();
+            input.nextLine();
 
-        lecturer.performDuties();
-        System.out.println("Lecturer Salary: " + lecturer.calculatePayment());
+            System.out.print("Enter course: ");
+            String course = input.nextLine();
 
-        System.out.println();
+            System.out.print("Enter fee amount: ");
+            double fee = input.nextDouble();
 
-        admin.performDuties();
+            // Creating object using user input
+            Student student = new Student(name, id, course, fee);
+
+            System.out.println("\n Student Details ");
+
+            student.displayRole();
+            student.registerCourse(course);
+
+            System.out.println("Fee Payment: " + student.calculatePayment());
+
+        }
+
+        catch (Exception e) {
+
+            System.out.println("Invalid input! Please enter the correct data type.");
+
+        }
+
+        finally {
+
+            System.out.println("Program executed successfully.");
+            input.close();
+
+        }
     }
 }
